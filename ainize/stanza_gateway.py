@@ -3,7 +3,7 @@ import json
 import os
 import requests
 
-from prepare_resources import default_treebanks
+from prepare_resources import default_treebanks, lcode2lang
 
 app = Flask(__name__)
 
@@ -31,10 +31,13 @@ def annotate():
   print(lang, text)
   idx = lang_list.index(lang)
   
+  lang2lcode = { v: k for k, v in lcode2lang }
+
   data = {
     'sentences' : text,
-    'lang' : lang
+    'lcode' : lang2lcode[lang]
   }
+  
   server_id = int(idx / 10)
   url = f'https://stanza-{server_id}.gkswjdzz.endpoint.ainize.ai/analyze'
   
