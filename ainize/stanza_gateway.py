@@ -21,23 +21,26 @@ def annotate():
   text = request.form[text_key]
   lang = request.form[lang_key]
 
-  lang_list =list(default_treebanks.keys())
-  if lang not in lang_list:
+  lang2lcode = {}
+  for lcode in lcode2lang:
+    lang2lcode[lcode2lang[lcode]] = lcode
+  
+  if lang not in list(lang2lcode.keys()):
     return jsonify({'message': 'invalid language'}), 400
   
   if len(text) == 0 :
     return jsonify({'message': 'no text'}), 400
-
-  print(lang, text)
-  idx = lang_list.index(lang)
+  lcode = lang2lcode[lang]
+  lcode_list = list(default_treebanks.keys())
   
-  lang2lcode = { v: k for k, v in lcode2lang }
-
+  print(lcode, text)
+  idx = lcode_list.index(lcode)
+  
   data = {
     'sentences' : text,
     'lcode' : lang2lcode[lang]
   }
-  
+
   server_id = int(idx / 10)
   url = f'https://stanza-{server_id}.gkswjdzz.endpoint.ainize.ai/analyze'
   
