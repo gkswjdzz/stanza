@@ -1,0 +1,147 @@
+openapi: 3.0.1
+info:
+  title: stanza
+  description: 'This repository provides API server using [Stanza](https://github.com/stanfordnlp/stanza) that contains tools for robust text analytics, including tokenization, multi-word token (MWT) expansion, lemmatization, part-of-speech (POS) and morphological features tagging, dependency parsing and named entity recognition(NER). You can find out more about Stanza at [official website](https://stanfordnlp.github.io/stanfordnlp/) or [github link](https://github.com/stanfordnlp/stanza).'
+  contact:
+    email: hanjeong@comcom.ai
+  license:
+    name: apache-2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0
+  version: 1.0.0
+tags:
+- name: Stanza
+  description: Analyze
+paths:
+  /analyze:
+    post:
+      tags:
+      - Stanza
+      summary: request to analyze the sentences ...
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/input'
+      responses:
+        200:
+          description: Success!
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sentences'
+        405:
+          description: Invalid input
+          content: {}
+components:
+  schemas:
+    input:
+      type: object
+      properties:
+        sentences:
+          type: string
+        language:
+          type: string
+          default: Korean
+          enum:
+            - Afrikaans
+            - Ancient_Greek
+            - Arabic
+            - Armenian
+            - Basque
+            - Belarusian
+            - Breton
+            - Bulgarian
+            - Buryat
+            - Catalan
+            - Traditional_Chinese
+            - Classical_Chinese
+            - Coptic
+            - Croatian
+            - Czech
+            - Danish
+            - Dutch
+            - English
+            - Estonian
+            - Faroese
+            - Finnish
+            - French
+            - Galician
+            - German
+            - Gothic
+            - Greek
+            - Hebrew
+            - Hindi
+            - Hungarian
+            - Indonesian
+            - Irish
+            - Italian
+            - Japanese
+            - Kazakh
+            - Korean
+            - Kurmanji
+            - Lithuanian
+            - Livvi
+            - Latin
+            - Latvian
+            - Maltese
+            - Marathi
+            - Naija
+            - North_Sami
+            - Norwegian_Bokmaal
+            - Norwegian_Nynorsk
+            - Old_Church_Slavonic
+            - Old_French
+            - Old_Russian
+            - Persian
+            - Polish
+            - Portuguese
+            - Romanian
+            - Russian
+            - Scottish_Gaelic
+            - Serbian
+            - Simplified_Chinese
+            - Slovak
+            - Slovenian
+            - Spanish
+            - Swedish
+            - Swedish_Sign_Language
+            - Tamil
+            - Telugu
+            - Thai
+            - Turkish
+            - Ukrainian
+            - Upper_Sorbian
+            - Urdu
+            - Uyghur
+            - Vietnamese
+            - Wolof
+    Sentences:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/Sentence'
+    Sentence:
+      type: array
+      items:
+        $ref: '#/components/schemas/Words'
+    Words:
+      type: object
+      properties:
+        index: 
+          type: integer
+        word: 
+          type: string
+        lemma: 
+          type: string
+        upos: 
+          type: string
+        xpos: 
+          type: string
+        feats: 
+          type: string
+        governor_index: 
+          type: integer
+        governor: 
+          type: string
+        dependecy_relation: 
+          type: string
+      
