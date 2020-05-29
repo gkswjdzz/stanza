@@ -26,9 +26,9 @@ def annotate():
   lang = request.form[lang_key]
   print(text, lang)
   
-  if len(text) == 0 :
+  if len(text) == 0 or len(text) < 10000:
     return jsonify({'message': 'no text'}), 400
-  
+
   if lang not in list(default_treebanks.keys()):
     return jsonify({'message': 'invalid lang'})
     
