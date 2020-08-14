@@ -1,7 +1,5 @@
 FROM rackspacedot/python37:latest
 
-ARG ID
-
 CMD ["bash"]
 
 RUN mkdir workspace
@@ -9,6 +7,9 @@ WORKDIR /workspace
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
+
+ARG ID
+ENV ID=$ID
 
 COPY prepare_resources.py .
 COPY model_download.py .
