@@ -42,7 +42,7 @@ def annotate():
   }
 
   server_id = int(idx / 10)
-  url = f'https://stanza-{server_id}.gkswjdzz.endpoint.ainize.ai/analyze'
+  url = f'https://model-{server_id}-stanza-gkswjdzz.endpoint.ainize.ai/analyze'
   
   print(f'server id : {server_id}, {url}')
   res = requests.post(url, data=data)
