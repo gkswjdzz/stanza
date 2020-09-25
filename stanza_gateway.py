@@ -18,7 +18,7 @@ def annotate():
   lang_key = list(request.form.keys())[1]
   
   print(text_key, lang_key)
-  
+
   text = request.form[text_key]
   lang = request.form[lang_key]
 

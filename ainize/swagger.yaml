@@ -12,7 +12,7 @@ tags:
 - name: Stanza
   description: Analyze
 servers:
-- url: https://master-stanza-gateway-gkswjdzz.endpoint.ainize.ai
+- url: https://stanza-gateway-stanza-gkswjdzz.endpoint.ainize.ai
 paths:
   /analyze:
     post:
