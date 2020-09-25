@@ -9,7 +9,6 @@ app = Flask(__name__)
 
 @app.route('/analyze', methods=['POST'])
 def annotate():
-  print('new input')
   keys = list(request.form.keys())
 
   if len(keys) != 2 :
@@ -17,6 +16,8 @@ def annotate():
   
   text_key = list(request.form.keys())[0]
   lang_key = list(request.form.keys())[1]
+  
+  print(text_key, lang_key)
   
   text = request.form[text_key]
   lang = request.form[lang_key]

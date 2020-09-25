@@ -7,7 +7,7 @@ WORKDIR /workspace
 
 RUN pip install flask requests
 
-COPY prepare_resources.py .
+COPY stanza/resources/prepare_resources.py .
 COPY stanza_gateway.py .
 
 ENTRYPOINT python stanza_gateway.py
